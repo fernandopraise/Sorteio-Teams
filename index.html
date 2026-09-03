@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Roleta Teams - Sorteio de Participantes</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="app">
+        <!-- Tela de Login -->
+        <div id="login-screen" class="screen">
+            <div class="login-container">
+                <h1>🎯 Roleta Teams</h1>
+                <p>Quem vai orar na daily hoje?</p>
+                <button id="btn-login" class="btn btn-primary">
+                    <svg width="20" height="20" viewBox="0 0 23 23" fill="none">
+                        <path d="M11 0H0V11H11V0Z" fill="#F25022"/>
+                        <path d="M23 0H12V11H23V0Z" fill="#7FBA00"/>
+                        <path d="M11 12H0V23H11V12Z" fill="#00A4EF"/>
+                        <path d="M23 12H12V23H23V12Z" fill="#FFB900"/>
+                    </svg>
+                    Entrar com Microsoft
+                </button>
+                <div class="divider">ou</div>
+                <button id="btn-manual" class="btn btn-secondary">Inserir nomes manualmente</button>
+            </div>
+        </div>
+
+        <!-- Tela de Input Manual -->
+        <div id="manual-screen" class="screen hidden">
+            <div class="manual-container">
+                <h2>Inserir Participantes</h2>
+                <p>Digite os nomes separados por vírgula ou um por linha:</p>
+                <textarea id="manual-names" placeholder="João&#10;Maria&#10;Pedro&#10;Ana">
+Alan 
+João
+Everson
+Ivanildo 
+Davi 
+Fernando 
+Kelvin 
+Guilherme
+                </textarea>
+                <div class="manual-actions">
+                    <button id="btn-manual-back" class="btn btn-secondary">Voltar</button>
+                    <button id="btn-manual-start" class="btn btn-primary">Iniciar Roleta</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tela de Seleção de Reunião -->
+        <div id="meeting-screen" class="screen hidden">
+            <div class="meeting-container">
+                <h2>Selecionar Participantes</h2>
+                <div id="meeting-loading" class="loading">
+                    <div class="spinner"></div>
+                    <p>Buscando participantes...</p>
+                </div>
+                <div id="participants-list" class="hidden">
+                    <div class="participants-header">
+                        <span id="participants-count"></span>
+                        <button id="btn-select-all" class="btn btn-small">Selecionar Todos</button>
+                    </div>
+                    <div id="participants-grid"></div>
+                    <button id="btn-start-roulette" class="btn btn-primary">Iniciar Roleta</button>
+                </div>
+                <div id="meeting-error" class="hidden error-box">
+                    <p id="error-message"></p>
+                    <button id="btn-retry" class="btn btn-secondary">Tentar Novamente</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tela da Roleta -->
+        <div id="roulette-screen" class="screen hidden">
+            <div class="roulette-container">
+                <div class="roulette-wrapper">
+                    <div class="pointer"></div>
+                    <canvas id="roulette-canvas" width="500" height="500"></canvas>
+                </div>
+                <div class="roulette-controls">
+                    <button id="btn-spin" class="btn btn-spin">🎲 GIRAR!</button>
+                </div>
+                <div id="winner-display" class="hidden">
+                    <div class="winner-card">
+                        <span class="winner-label">🙏 Vai orar:</span>
+                        <span id="winner-name" class="winner-name"></span>
+                        <button id="btn-remove-winner" class="btn btn-small btn-danger">Remover da roleta</button>
+                    </div>
+                    <div class="verse-card">
+                        <p id="verse-text" class="verse-text"></p>
+                        <span id="verse-ref" class="verse-ref"></span>
+                    </div>
+                </div>
+                <div id="removed-list" class="hidden">
+                    <h4>Removidos:</h4>
+                    <div id="removed-names"></div>
+                </div>
+                <div class="roulette-footer">
+                    <button id="btn-reset" class="btn btn-secondary">Reiniciar</button>
+                    <button id="btn-back-to-start" class="btn btn-secondary">Voltar ao Início</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Microsoft Authentication Library -->
+    <script src="https://alcdn.msauth.net/browser/2.38.0/js/msal-browser.min.js"></script>
+    <script src="auth.js"></script>
+    <script src="verses.js"></script>
+    <script src="roulette.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
